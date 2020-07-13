@@ -1,0 +1,13 @@
+{
+  "name": "jet-test/teamcity-example",
+  "description": "TeamCity example",
+  "homepage": "https://github.com/jet-test/teamcity-example",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  }
+}
