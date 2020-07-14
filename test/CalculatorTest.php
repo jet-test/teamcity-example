@@ -9,32 +9,32 @@ class CalculatorTest extends TestCase
 {
     protected $calculator;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->calculator = new Calculator();
     }
 
-    public function testPlus()
+    public function testPlus(): void
     {
         $this->assertEquals(2, $this->calculator->plus(1,1));
     }
 
-    public function testMinus()
+    public function testMinus(): void
     {
         $this->assertEquals(1, $this->calculator->minus(2,1));
     }
 
-    public function testDivide()
+    public function testDivide(): void
     {
         $this->assertEquals(2, $this->calculator->divide(2,1));
     }
 
-    public function testMultiply()
+    public function testMultiply(): void
     {
         $this->assertEquals(2, $this->calculator->multiply(2,1));
     }
 
-    public function testFail()
+    public function testFail(): void
     {
         $this->assertEquals(2, 1);
     }
