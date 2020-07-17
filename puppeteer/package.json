@@ -13,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest": "^26.1.0",
+    "jest-puppeteer": "^4.4.0",
     "pixelmatch": "^5.2.1",
     "puppeteer": "^5.1.0",
     "puppeteer-core": "^5.1.0"
