@@ -12,6 +12,7 @@ if ($name) { ?>
         what is your <input type="text" name="name" placeholder="name"/>?
         <input type="submit" value="Hello!">
     </form>
+    <h1>Who let the button clicks 2?</h1>
     <?php
 }
 ?>
