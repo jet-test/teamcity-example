@@ -1,0 +1,20 @@
+{
+  "name": "puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "screenshots:make": "node generate-screenshots.js",
+    "screenshots:compare": "node compare.js",
+    "screenshots": "yarn screenshots:make; yarn screenshots:compare"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pixelmatch": "^5.2.1",
+    "puppeteer": "^5.1.0",
+    "puppeteer-core": "^5.1.0"
+  }
+}
