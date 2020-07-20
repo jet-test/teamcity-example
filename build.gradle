@@ -1,3 +1,9 @@
 task printProperty {
-    println "my param value: ${myParam}"
+    doLast {
+        println "my param value: ${myParam}"
+        println "my param value: ${project["my.param"]}"
+        println "my param value: ${teamcity.myParam}"
+        println "my param value: ${teamcity["my.param"]}"
+        println "teamcity: ${teamcity["teamcity.build.id"]}"
+    }
 }

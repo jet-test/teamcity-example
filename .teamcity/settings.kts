@@ -33,12 +33,20 @@ object Print : BuildType({
     name = "Print"
 
     params {
-        param("system.myParam", "from TeamCity")
+        param("system.myParam", "myParam: from TeamCity")
+        param("system.my.param", "my.param: from TeamCity")
     }
 
     steps {
         gradle {
+            name = "Groovy"
             tasks = "printProperty"
+            buildFile = "build.gradle"
+        }
+        gradle {
+            name = "Kotlin"
+            tasks = "printProperty"
+            buildFile = "build.gradle.kts"
         }
     }
 })
