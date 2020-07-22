@@ -8,6 +8,9 @@ const {readBufferedFiles} = require("./utils")
 async function compareImages(filename) {
     let generatedFile = null
     let originalFile = null
+    let testName = "compare-" + filename;
+    console.log("##teamcity[testStarted name='" + testName + "']")
+    let startTime = Date.now()
     try {
         generatedFile = await fs.promises.readFile(`${buffer}/${filename}`)
         originalFile = await fs.promises.readFile(`${stable}/${filename}`)
@@ -21,14 +24,20 @@ async function compareImages(filename) {
         const diffCount = pixelmatch(original.data, generated.data, diff.data, width, height, {threshold: 0.2})
 
         if (diffCount > 0) {
+            console.log("##testFailed[testStarted name='" + testName + "' message='ERROR']")
             await fs.promises.writeFile(`${diffDir}/${filename}`, PNG.sync.write(diff))
+        } else {
+
         }
     } catch (error) {
-        console.error("Error: ", error)
+        console.trace("Error: ", error)
+        console.log("##testFailed[testStarted name='" + testName + "' message='NEW IMAGE' details='" + error.toString().replace("\\", "|").replace("'", "|'") + "']")
 
         if (error.code === "ENOENT") {
             await fs.promises.writeFile(`${diffDir}/${filename}`, generatedFile)
         }
+    } finally {
+        console.log("##testFinished[testStarted name='" + testName + "' duration='" + Date.now() - startTime + "']")
     }
 }
 
