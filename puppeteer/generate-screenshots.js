@@ -8,7 +8,7 @@ const {buffer, diffDir} = require('./paths');
 
     const browser = await puppeteer.launch({
         headless: true,
-        args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage']
+        args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
     });
     const page = await browser.newPage();
     await page.goto('http://localhost:8041');
