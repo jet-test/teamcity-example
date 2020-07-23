@@ -18,5 +18,8 @@
     "pixelmatch": "^5.2.1",
     "puppeteer": "^5.1.0",
     "puppeteer-core": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest-teamcity": "^1.8.0"
   }
 }

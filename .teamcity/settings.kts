@@ -74,7 +74,7 @@ object Puppeteer : BuildType({
             name = "Puppeteer"
             workingDir = "puppeteer"
             scriptContent = """
-                yarn install 
+                yarn install
                 yarn screenshots 
                 yarn jest
             """.trimIndent()
