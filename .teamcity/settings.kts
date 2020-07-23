@@ -79,7 +79,6 @@ object Puppeteer : BuildType({
                 yarn jest
             """.trimIndent()
             dockerImage = "buildkite/puppeteer"
-            dockerRunParameters = "--link frontend"
         }
     }
 })
