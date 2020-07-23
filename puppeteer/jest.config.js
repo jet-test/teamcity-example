@@ -1,3 +1,6 @@
 module.exports = {
-    "preset": "jest-puppeteer"
+    "preset": "jest-puppeteer",
+    launch: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    },
 }
