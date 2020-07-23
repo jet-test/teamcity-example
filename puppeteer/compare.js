@@ -8,7 +8,7 @@ const {readBufferedFiles} = require("./utils")
 async function compareImages(filename) {
     let generatedFile = null
     let originalFile = null
-    let testName = "compare-" + filename;
+    let testName = escapeTCMessage("compare-" + filename);
     console.log("##teamcity[testStarted name='" + testName + "']")
     let startTime = Date.now()
     try {
@@ -24,21 +24,31 @@ async function compareImages(filename) {
         const diffCount = pixelmatch(original.data, generated.data, diff.data, width, height, {threshold: 0.2})
 
         if (diffCount > 0) {
-            console.log("##testFailed[testStarted name='" + testName + "' message='ERROR']")
             await fs.promises.writeFile(`${diffDir}/${filename}`, PNG.sync.write(diff))
+            console.log("##teamcity[testFailed name='" + testName + "' message='ERROR']")
         } else {
 
         }
     } catch (error) {
         console.trace("Error: ", error)
-        console.log("##testFailed[testStarted name='" + testName + "' message='NEW IMAGE' details='" + error.toString().replace("\\", "|").replace("'", "|'") + "']")
+        console.log("##teamcity[testFailed name='" + testName + "' message='Error: " + error.code + "' details='" + escapeTCMessage(error.toString()) + "']")
 
         if (error.code === "ENOENT") {
             await fs.promises.writeFile(`${diffDir}/${filename}`, generatedFile)
         }
     } finally {
-        console.log("##testFinished[testStarted name='" + testName + "' duration='" + Date.now() - startTime + "']")
+        let duration = Date.now() - startTime
+        console.log("##teamcity[testFinished name='" + testName + "' duration='" + duration + "']")
     }
+}
+
+function escapeTCMessage(str) {
+    return str.replace(/\|/g, "||")
+        .replace(/\n/g, "|n")
+        .replace(/\r/g, "|r")
+        .replace(/\[/g, "|[")
+        .replace(/]/g, "|]")
+        .replace(/'/g, "|'")
 }
 
 async function launchCompare() {
