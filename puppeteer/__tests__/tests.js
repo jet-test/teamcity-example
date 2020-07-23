@@ -1,6 +1,6 @@
 describe('Input click', () => {
     beforeAll(async () => {
-        await page.goto('http://localhost:8041');
+        await page.goto('http://frontend:8041');
     });
 
     it('should be titled "PHP Test"', async () => {

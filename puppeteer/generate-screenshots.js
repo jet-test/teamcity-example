@@ -11,7 +11,7 @@ const {buffer, diffDir} = require('./paths');
         args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
     });
     const page = await browser.newPage();
-    await page.goto('http://localhost:8041');
+    await page.goto('http://frontend:8041');
     await page.screenshot({path: `buffer/overview.png`});
 
     await browser.close();
