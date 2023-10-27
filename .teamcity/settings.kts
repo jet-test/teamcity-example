@@ -46,6 +46,10 @@ object New : BuildType({
                 value("Linux"),
                 value("Windows")
             )
+            param("aaa", listOf(
+                value("aaa"),
+                value("bbb")
+            ))
         }
     }
 })
